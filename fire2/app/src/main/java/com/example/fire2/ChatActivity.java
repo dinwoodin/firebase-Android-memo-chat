@@ -2,10 +2,12 @@ package com.example.fire2;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -94,6 +96,7 @@ public class ChatActivity extends AppCompatActivity {
 
             @Override
             public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+                adapter.notifyDataSetChanged();
 
             }
 
@@ -151,7 +154,26 @@ public class ChatActivity extends AppCompatActivity {
                 pdate.gravity= Gravity.LEFT;
 
             }
-
+            holder.content.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    if(user.getEmail().equals(vo.getEmail())){
+                        AlertDialog.Builder box=new AlertDialog.Builder(ChatActivity.this);
+                        box.setMessage(vo.getContent() + "를 삭제하시겠습니까?>");
+                        box.setPositiveButton("yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                ref=db.getReference("chats").child(vo.getKey());
+                                ref.removeValue();
+                                array.remove(position);
+                            }
+                        });
+                        box.setNegativeButton("no", null);
+                        box.show();
+                    }
+                    return true;
+                }
+            });
         }
 
         @Override
