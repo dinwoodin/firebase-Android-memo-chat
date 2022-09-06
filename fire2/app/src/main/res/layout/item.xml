@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10sp"
+    android:orientation="vertical"
+    android:id="@+id/item">
+    <TextView
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:lines="2"
+        android:ellipsize="end"
+        android:text="내용이 내수용으로 내용인점을 감아하여 내용을 참고하여 주시기 바라는 내용을 추가하는 내용인 내용을 알고 있는 내용씨는 내용을 내용하여 내용해 내용"
+        />
+    <TextView
+        android:id="@+id/date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="2222-11-22 15:33:33"/>
+
+</LinearLayout>
